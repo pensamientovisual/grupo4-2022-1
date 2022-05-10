@@ -30,7 +30,7 @@
         
     </header>
     <main>
-        <div class="contenedor-servicio">
+        <div class="contenedor-servicio" id="mapa">
             <div class="mapadiv">
                 <svg
                     xmlns:svg="http://www.w3.org/2000/svg"
@@ -266,9 +266,7 @@
                         style="fill-opacity:1;stroke:#fff;stroke-width:1.41398096;stroke-opacity:1" />
                     </a>
                 </svg>      
-                    
-                </div>
-                <div class="leyenda_obesidad">
+                <div class="leyenda leyenda_obesidad hidden" id="leyenda_obesidad">
                     <h4>
                         Obesidad
                     </h4>
@@ -283,9 +281,8 @@
                             >30%
                         </div>
                     </div>
-                </div>  
-                
-                <div class="leyenda_ingresos">
+                </div>
+                <div class="leyenda leyenda_ingresos hidden" id="leyenda_ingresos">
                     <h4>
                         Ingresos
                     </h4>
@@ -301,8 +298,7 @@
                         </div>
                     </div>
                 </div>   
-
-                <div class="leyenda_ips">
+                <div class="leyenda leyenda_ips hidden" id="leyenda_ips">
                     <h4>
                         IPS
                     </h4>
@@ -318,153 +314,168 @@
                         </div>
                     </div>
                 </div>  
-                
-                
             </div>
-            <div class="detalles-comuna">
+            <div class="detalles-comuna" >
                 <h1>
                     Obesidad en Santiago
                 </h1>
+                <div class="botones-graficos">
+                    <button onclick="definirColoresMapa('ingresos')">
+                        Ingresos
+                    </button>
+                    <button onclick="definirColoresMapa('obesidad')">
+                        Obesidad
+                    </button>
+                    <button onclick="definirColoresMapa('ips')">
+                        IPS
+                    </button>
+                </div>
                 <h2 id="detailsTitle">
                     Comuna
                 </h2>
-                <button onclick="definirColoresMapa('ingresos')">
-                    Ingresos
-                </button>
-                <button onclick="definirColoresMapa('obesidad')">
-                    Obesidad
-                </button>
-                <button onclick="definirColoresMapa('ips')">
-                    IPS
-                </button>
-            </div>
-
-
-
-
-
-            
-        </main>
-        <script src="./js/comunas.js"></script>
-        <script>
-
-            // TODO: leyendas
-            // TODO: permitir cambiar mapas
-
-            function cambioComuna(comunaId) {
-                const comuna = comunas[comunaId];
-                $('#detailsTitle').text(comuna.nombre);
-                $('#detailsTitle').append(" Ingresos: ", comuna.ingresos);
-                $('#detailsTitle').append(" Obesidad: ",comuna.obesidad);
-                $('#detailsTitle').append(" IPS: ",comuna.ips);
-                $('#detailsTitle').append(" Superficie de áreas verdes: ",comuna.areas_verdes,"m^2");
-                $('#detailsTitle').append(" Superficie de áreas verdes por habitante: ",comuna.areas_verdes_hab,"m^2");
-                $('#detailsTitle').append(" Ciclovias: ",comuna.ciclovias,"%");
-                $('#detailsTitle').append(" Distancia a parques públicos: ",comuna.distancia_parques,"m");
-                $('#detailsTitle').append(" Educación tipo: ",comuna.educacion);
-
-                
-            }
-
-                
-            function definirColoresMapa(mapa) {
-                for (var [comunaId, comuna] of Object.entries(comunas)) {
-                    if (mapa == "obesidad") {
-                        if (comuna.obesidad <= 0.2) {
-                            $(`#${comunaId}`).attr('fill','#fdba74');
-                        } else if (comuna.obesidad > 0.2 && comuna.obesidad <= 0.3) {
-                            $(`#${comunaId}`).attr('fill','#fb923c');
-                        } else {
-                            $(`#${comunaId}`).attr('fill','#c2410c');
-                        }
-                    } else if (mapa == "ingresos") {
-                        if (comuna.ingresos <= 200000) {
-                            $(`#${comunaId}`).attr('fill','#bbf7d0');
-                        } else if (comuna.ingresos > 200000 && comuna.ingresos <= 450000) {
-                            $(`#${comunaId}`).attr('fill','#86efac');
-                        } else {
-                            $(`#${comunaId}`).attr('fill','#22c55e');
-                        }
-                    } else if (mapa == "ips") {
-                        if (comuna.ips <= 30) {
-                            $(`#${comunaId}`).attr('fill','#93c5fd');
-                        } else if (comuna.ips > 30 && comuna.ips <= 60) {
-                            $(`#${comunaId}`).attr('fill','#60a5fa');
-                        } else {
-                            $(`#${comunaId}`).attr('fill','#1d4ed8');
-                        }
-                    }
-                
-                }
-            }
-
-            $('a.comuna').mouseover(function() {
-                let comunaId = $(this).find("path").attr("id");
-                cambioComuna(comunaId);
-                
-
-            })
-
-            $(document).ready(function() {
-                definirColoresMapa("ingresos");
-            });
-
-           
-        </script>
-            </div>
-        </section>
-        <section class="gallery" id="datos_chile">
-            <div class="contenedor">
-                <h2 class="subtitulo"><strong>Datos a nivel país</strong> </h2>
-                <div class="contenedor-galeria">
-                    <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM.jpeg" alt="" class="img-galeria">
-                    <img src="img/WhatsApp Image 2022-05-09 at 10.35.16 PM (1).jpeg" alt="" class="img-galeria">
-                    <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM (1).jpeg" alt="" class="img-galeria">
-                    <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM (2).jpeg" alt="" class="img-galeria">
-                    <img src="img/WhatsApp Image 2022-05-09 at 10.35.16 PM.jpeg" alt="" class="img-galeria">
-                    <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM (3).jpeg" alt="" class="img-galeria">
-                </div>
-            </div>
-        </section>
-        <section class="imagen-light">
-            <img src="img/CloseLight.svg" alt="" class="close">
-            <img src="img/mapa-comuna-santiago-municipalidad-de-santiago-1000x750.jpg" alt="" class="agregar-imagen">
-        </section>
-        
-        
-
+                <ul>
+                    <li>
+                        <b>Ingresos</b> $<span id="detailsIngresos">--</span>
+                    </li>
+                    <li>
+                        <b>IPS</b> <span id="detailsIps">--</span>
+                    </li>
+                    <li>
+                        <b>Áreas verdes totales</b> <span id="detailsAreasVerdes">--</span> m<sup>2</sup>
+                    </li>
+                    <li>
+                        <b>Áreas verdes por habitante</b> <span id="detailsAreasVerdesHab">--</span> m<sup>2</sup>
+                    </li>
+                    <li>
+                        <b>Obesidad</b> <span id="detailsObesidad">--</span>
+                    </li>
+                    <li>
+                        <b>Ciclovias</b> <span id="detailsCiclovias">--</span>
+                    </li>
+                    <li>
+                        <b>Distancia a parques</b> <span id="detailsDistanciaParques">--</span> m
+                    </li>
+                    <li>
+                        <b>Educación</b> <span id="detailsEducacion">--</span>
+                    </li>
+                </ul>
+            </div>            
+        </div>
     </main>
+    <section class="gallery" id="datos_chile">
+        <div class="contenedor">
+            <h2 class="subtitulo"><strong>Datos a nivel país</strong> </h2>
+            <div class="contenedor-galeria">
+                <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM.jpeg" alt="" class="img-galeria">
+                <img src="img/WhatsApp Image 2022-05-09 at 10.35.16 PM (1).jpeg" alt="" class="img-galeria">
+                <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM (1).jpeg" alt="" class="img-galeria">
+                <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM (2).jpeg" alt="" class="img-galeria">
+                <img src="img/WhatsApp Image 2022-05-09 at 10.35.16 PM.jpeg" alt="" class="img-galeria">
+                <img src="img/WhatsApp Image 2022-05-09 at 10.24.39 PM (3).jpeg" alt="" class="img-galeria">
+            </div>
+        </div>
+    </section>
+    <section class="imagen-light">
+        <img src="img/CloseLight.svg" alt="" class="close">
+        <img src="img/mapa-comuna-santiago-municipalidad-de-santiago-1000x750.jpg" alt="" class="agregar-imagen">
+    </section>
     <footer id="footer">
         <div class="contenedor footer-content">
-                <div class="contact-us">
-                    <h2 class="brand">Diseño de Grupo 4 <br> </h2>
-                    <h4 class="integrantes"> Juan Agüero - Valentina Barra - Sebastián Huidobro - Sandra Roizman <br> </h4>
-                    <h4> </h4>
-                    <p>Referencias:
-                        <a  target="_balnk" href="http://www.amuch.cl/pdf/estudio_calidad_de_la_educacion_2015.pdf">Referencia 1</a>
-                        <a  target="_balnk" href="https://repositorio.uchile.cl/bitstream/handle/2250/181018/Tesis_Magdalena%20Bastias.pdf?sequence=1&isAllowed=y">Referencia 2</a>
-                        <a  target="_balnk" href="https://www.theguardian.com/environment/interactive/2013/may/14/alaska-villages-frontline-global-warming">Referencia 3</a>
-                        <a  target="_balnk" href="https://www.theguardian.com/environment/interactive/2013/may/14/alaska-villages-frontline-global-warming">Referencia 4</a>
-                        <a  target="_balnk" href="https://www.freepik.es/search?format=search&query=Stress">Referencia 5</a>
-                        <a  target="_balnk" href=https://www.muyinteresante.com.mx/cuerpo-mente/sedentarismo-mexico-peor-obesidad/amp>Referencia 6</a>
-
-                        </p>
-                </div>
-                <div class="social-media">
-                    <a href="./" class="social-media-icon">
-                        <i class='bx bxl-instagram'></i>
-                    </a>
-                    <a href="./" class="social-media-icon">
-                        <i class='bx bxl-gmail'></i>
-                    </a>
-                </div>
+            <div class="contact-us">
+                <h2 class="brand">Diseño de Grupo 4 <br> </h2>
+                <h4 class="integrantes"> Juan Agüero - Valentina Barra - Sebastián Huidobro - Sandra Roizman <br> </h4>
+                <h4> </h4>
+                <p>Referencias:
+                    <a  target="_balnk" href="http://www.amuch.cl/pdf/estudio_calidad_de_la_educacion_2015.pdf">Referencia 1</a>
+                    <a  target="_balnk" href="https://repositorio.uchile.cl/bitstream/handle/2250/181018/Tesis_Magdalena%20Bastias.pdf?sequence=1&isAllowed=y">Referencia 2</a>
+                    <a  target="_balnk" href="https://www.theguardian.com/environment/interactive/2013/may/14/alaska-villages-frontline-global-warming">Referencia 3</a>
+                    <a  target="_balnk" href="https://www.theguardian.com/environment/interactive/2013/may/14/alaska-villages-frontline-global-warming">Referencia 4</a>
+                    <a  target="_balnk" href="https://www.freepik.es/search?format=search&query=Stress">Referencia 5</a>
+                    <a  target="_balnk" href=https://www.muyinteresante.com.mx/cuerpo-mente/sedentarismo-mexico-peor-obesidad/amp>Referencia 6</a>
+                </p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+                <a href="./" class="social-media-icon">
+                    <i class='bx bxl-gmail'></i>
+                </a>
+            </div>
         </div>
         <div class="line"></div>
-
     </footer>
-
-
     <script src="js/menu.js"></script>
     <script src="js/lightbox.js"></script>
+    <script src="./js/comunas.js"></script>
+    <script>
+
+        // TODO: leyendas
+        // TODO: permitir cambiar mapas
+
+        function cambioComuna(comunaId) {
+            const comuna = comunas[comunaId];
+            $('#detailsTitle').text(comuna.nombre);
+            $('#detailsIngresos').text(comuna.ingresos);
+            $('#detailsObesidad').text(comuna.obesidad);
+            $('#detailsIps').text(comuna.ips);
+            $('#detailsAreasVerdes').text(comuna.areas_verdes);
+            $('#detailsAreasVerdesHab').text(comuna.areas_verdes_hab);
+            $('#detailsCiclovias').text(comuna.ciclovias);
+            $('#detailsDistanciaParques').text(comuna.distancia_parques);
+            $('#detailsEducacion').text(comuna.educacion);
+        }
+
+            
+        function definirColoresMapa(mapa) {
+            for (var [comunaId, comuna] of Object.entries(comunas)) {
+                $("#leyenda_obesidad").hide();
+                $("#leyenda_ingresos").hide();
+                $("#leyenda_ips").hide();
+                if (mapa == "obesidad") {
+                    $("#leyenda_obesidad").show();
+                    if (comuna.obesidad <= 0.2) {
+                        $(`#${comunaId}`).attr('fill','#fdba74');
+                    } else if (comuna.obesidad > 0.2 && comuna.obesidad <= 0.3) {
+                        $(`#${comunaId}`).attr('fill','#fb923c');
+                    } else {
+                        $(`#${comunaId}`).attr('fill','#c2410c');
+                    }
+                } else if (mapa == "ingresos") {
+                    $("#leyenda_ingresos").show();
+                    if (comuna.ingresos <= 200000) {
+                        $(`#${comunaId}`).attr('fill','#bbf7d0');
+                    } else if (comuna.ingresos > 200000 && comuna.ingresos <= 450000) {
+                        $(`#${comunaId}`).attr('fill','#86efac');
+                    } else {
+                        $(`#${comunaId}`).attr('fill','#22c55e');
+                    }
+                } else if (mapa == "ips") {
+                    $("#leyenda_ips").show();
+                    if (comuna.ips <= 30) {
+                        $(`#${comunaId}`).attr('fill','#93c5fd');
+                    } else if (comuna.ips > 30 && comuna.ips <= 60) {
+                        $(`#${comunaId}`).attr('fill','#60a5fa');
+                    } else {
+                        $(`#${comunaId}`).attr('fill','#1d4ed8');
+                    }
+                }
+            
+            }
+        }
+
+        $('a.comuna').mouseover(function() {
+            let comunaId = $(this).find("path").attr("id");
+            cambioComuna(comunaId);
+            
+
+        })
+
+        $(document).ready(function() {
+            definirColoresMapa("ingresos");
+        });
+
+        
+    </script>
 </body>
 </html>

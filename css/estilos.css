@@ -101,7 +101,7 @@ body{
 
 .contenedor-servicio{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -288,8 +288,7 @@ footer{
 }
 
 .contenedor-servicio {
-    height: calc(100vh - 60px);
-    margin-top: 60px;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -299,34 +298,32 @@ footer{
 .contenedor-servicio > div.mapadiv {
     width: 60%;
     text-align: center;
-}
-
-.contenedor-servicio > .detalles-comuna {
-    height: 100%;
-    width: 40%;
-}
-
-.contenedor-servicio > .detalles-comuna h1 {
-    max-width: 400px;
-    margin-bottom: 40px;
-}
-
-.leyenda_obesidad {
-    display: inline-block;
-}
-
-.leyenda_obesidad h4 {
-    font-size: 14px;
-    color: slategray;
-}
-
-div.niveles_obesidad {
+    height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leyenda {
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.leyenda h4 {
+    font-size: 14px;
+    color: #000;
+}
+
+.leyenda > div {
+    display: inline-flex;
     max-width: 95%;
     width: 350px;
+    margin-top: 10px;
 }
 
-div.niveles_obesidad > div {
+.leyenda > div > div {
     width: 33.3%;
     height: 30px;
     display: flex;
@@ -337,96 +334,44 @@ div.niveles_obesidad > div {
     font-weight: 600;
 }
 
-div.niveles_obesidad > div:first-child {
+.niveles_obesidad > div:first-child {
     background-color: #fdba74;
+    color: #000;
 }
-div.niveles_obesidad > div:nth-child(2) {
+.niveles_obesidad > div:nth-child(2) {
     background-color: #fb923c;
+    color: #000;
 }
-div.niveles_obesidad > div:nth-child(3) {
+.niveles_obesidad > div:nth-child(3) {
     background-color: #c2410c;
-}
-
-
-
-.leyenda_ingresos {
-    display: inline-block;
-}
-
-.leyenda_ingresos h4 {
-    font-size: 14px;
-    color: slategray;
-}
-
-div.niveles_ingresos {
-    display: flex;
-    max-width: 95%;
-    width: 350px;
-}
-
-div.niveles_ingresos > div {
-    width: 33.3%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
+    color: #000;
 }
 
 div.niveles_ingresos > div:first-child {
     background-color: #bbf7d0;
+    color: #000;
 }
 div.niveles_ingresos > div:nth-child(2) {
     background-color: #86efac;
+    color: #000;
 }
 div.niveles_ingresos > div:nth-child(3) {
     background-color: #22c55e;
-}
-
-
-.leyenda_ips {
-    display: inline-block;
-    margin: 100px;
-}
-
-.leyenda_ips h4 {
-    font-size: 14px;
-    color: slategray;
-}
-
-div.niveles_ips {
-    display: flex;
-    max-width: 95%;
-    width: 350px;
-}
-
-div.niveles_ips > div {
-    width: 33.3%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
+    color: #000;
 }
 
 div.niveles_ips > div:first-child {
     background-color: #93c5fd;
+    color: #000;
 }
 div.niveles_ips > div:nth-child(2) {
     background-color: #60a5fa;
+    color: #000;
 }
 div.niveles_ips > div:nth-child(3) {
     background-color: #1d4ed8;
+    color: #000;
 }
-
-
-
-
-
 
 path:hover {
     fill: slategray;
@@ -434,5 +379,70 @@ path:hover {
 
 .detalles-comuna{
     font-size: smaller;
-    
+}
+
+.detalles-comuna {
+    height: 100%;
+    width: 40%;
+    padding: 60px 40px;
+}
+
+.detalles-comuna h1 {
+    max-width: 400px;
+    margin: 0;
+}
+
+.detalles-comuna .botones-graficos {
+    margin: 30px 0;
+}
+
+.detalles-comuna .botones-graficos > button {
+    -webkit-appearance: none;
+    padding: 5px 14px;
+    border-radius: 3px;
+    background-color: #e0f2fe;
+    color: #0c4a6e;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+}
+
+.detalles-comuna .botones-graficos > button:hover {
+    background-color: #7dd3fc;
+}
+
+.detalles-comuna ul {
+    margin-top: 10px;
+    border: 2px solid #94a3b8;
+    background-color: #f8fafc;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.detalles-comuna ul li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.detalles-comuna ul li b {
+    margin-right: 5px;
+}
+
+@media only screen and (max-width: 960px) {
+    .contenedor-servicio {
+        flex-direction: row;
+        height: auto;
+    }
+    .contenedor-servicio > div.mapadiv {
+        width: 100%;
+    }
+    .contenedor-servicio > .detalles-comuna {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.hidden {
+    display: none;
 }
